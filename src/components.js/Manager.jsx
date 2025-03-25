@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react'
 
 const Manager = () => {
 
+  const passwordRef = useRef()
   const ref = useRef()
   const [form, setForm] = useState({ site: "", username: "", password: "" })
   const [passwordArray, setPasswordArray] = useState([]);
@@ -18,9 +19,11 @@ const Manager = () => {
     // alert("show the password");
     if (ref.current.src.includes("eyecross.png")) {
       ref.current.src = "eye.png"
+      passwordRef.current.type = "text"
     }
     else {
       ref.current.src = "eyecross.png"
+      passwordRef.current.type = "password"
     }
   }
 
@@ -38,7 +41,7 @@ const Manager = () => {
     <>
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"><div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-fuchsia-400 opacity-20 blur-[100px]"></div></div>
 
-      <div className='px-40 py-1 px-26 mx-auto'>
+      <div className='px-40 py-1 mx-auto'>
         <h1 className='text-4xl text font-bold text-center'>
           <span className='text-green-700'>&lt;</span>
           <span>Pass</span><span className='text-green-700'>OP/&gt;</span>
@@ -53,14 +56,14 @@ const Manager = () => {
               type="text" name="username" id="" />
 
             <div className='relative'>
-              <input value={form.password} onChange={handleChange} placeholder='Enter Password' className='rounded-full border border-green-500 w-full p-4 py-1 px-2'
-                type="text" name="password" id="" />
+              <input ref={passwordRef} value={form.password} onChange={handleChange} placeholder='Enter Password' className='rounded-full border border-green-500 w-full p-4 py-1 px-2'
+                type="password" name="password" id="" />
               <span className='absolute right-[3px] top-[4px] cursor-pointer' onClick={showPassword}>
                 <img ref={ref} className='p-1' width={26} src="eye.png" alt="eye" />
               </span>
             </div>
           </div>
-          <button onClick={savePassword} className='flex justify-center items-center gap-2 bg-green-400 hover:bg-green-300 rounded-full px-8 py-2 px-2 w-fit border border-green-900'>
+          <button onClick={savePassword} className='flex justify-center items-center gap-2 bg-green-400 hover:bg-green-300 rounded-full px-8 py-2 w-fit border border-green-900'>
             Add Password
           </button>
         </div>
