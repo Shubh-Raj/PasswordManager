@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import './App.css'
+import './index.css'
 import Navbar from './components.js/Navbar'
 import Manager from './components.js/Manager'
 
